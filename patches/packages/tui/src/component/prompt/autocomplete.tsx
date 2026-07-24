@@ -453,7 +453,7 @@ export function Autocomplete(props: {
       const label = serverCommand.source === "mcp" ? ":mcp" : ""
       results.push({
         display: "/" + serverCommand.name + label,
-        description: serverCommand.description,
+        description: serverCommand.description ? zh(serverCommand.description) : undefined,
         onSelect: () => {
           const newText = "/" + serverCommand.name + " "
           const cursor = props.input().logicalCursor

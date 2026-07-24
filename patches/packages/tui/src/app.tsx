@@ -570,7 +570,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "session.list",
-        title: "Switch session",
+        title: zh("Switch session"),
         category: "Session",
         suggested: sync.data.session.length > 0,
         slashName: "sessions",
@@ -581,7 +581,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "session.new",
-        title: "New session",
+        title: zh("New session"),
         suggested: route.data.type === "session",
         category: "Session",
         slashName: "new",
@@ -595,7 +595,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "workspace.copy_path",
-        title: "Copy worktree path",
+        title: zh("Copy worktree path"),
         category: "Workspace",
         enabled: () => currentWorktreeWorkspace() !== undefined,
         run: async () => {
@@ -610,7 +610,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "workspace.list",
-        title: "Manage workspaces",
+        title: zh("Manage workspaces"),
         category: "Workspace",
         hidden: !Flag.OPENCODE_EXPERIMENTAL_WORKSPACES,
         slashName: "workspaces",
@@ -629,7 +629,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       })),
       {
         name: "model.list",
-        title: "Switch model",
+        title: zh("Switch model"),
         suggested: true,
         category: "Agent",
         slashName: "models",
@@ -677,7 +677,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "agent.list",
-        title: "Switch agent",
+        title: zh("Switch agent"),
         category: "Agent",
         slashName: "agents",
         run: () => {
@@ -686,7 +686,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "mcp.list",
-        title: "Toggle MCPs",
+        title: zh("Toggle MCPs"),
         category: "Agent",
         slashName: "mcps",
         run: () => {
@@ -712,7 +712,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "variant.list",
-        title: "Switch model variant",
+        title: zh("Switch model variant"),
         category: "Agent",
         hidden: local.model.variant.list().length === 0,
         slashName: "variants",
@@ -738,7 +738,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "provider.connect",
-        title: "Connect provider",
+        title: zh("Connect provider"),
         suggested: !connected(),
         slashName: "connect",
         run: () => {
@@ -750,7 +750,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         ? [
             {
               name: "console.org.switch",
-              title: "Switch org",
+              title: zh("Switch org"),
               suggested: Boolean(sync.data.console_state.activeOrgName),
               slashName: "org",
               slashAliases: ["orgs", "switch-org"],
@@ -763,7 +763,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         : []),
       {
         name: "opencode.status",
-        title: "View status",
+        title: zh("View status"),
         slashName: "status",
         run: () => {
           dialog.replace(() => <DialogStatus />)
@@ -781,7 +781,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "theme.switch",
-        title: "Switch theme",
+        title: zh("Switch theme"),
         slashName: "themes",
         run: () => {
           dialog.replace(() => <DialogThemeList />)
@@ -790,7 +790,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "theme.switch_mode",
-        title: mode() === "dark" ? "Switch to light mode" : "Switch to dark mode",
+        title: mode() === "dark" ? zh("Switch to light mode") : zh("Switch to dark mode"),
         run: () => {
           setMode(mode() === "dark" ? "light" : "dark")
           dialog.clear()
@@ -799,7 +799,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "theme.mode.lock",
-        title: locked() ? "Unlock theme mode" : "Lock theme mode",
+        title: locked() ? zh("Unlock theme mode") : zh("Lock theme mode"),
         run: () => {
           if (locked()) unlock()
           else lock()
@@ -809,7 +809,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "help.show",
-        title: "Help",
+        title: zh("Help"),
         slashName: "help",
         run: () => {
           dialog.replace(() => <DialogHelp />)
@@ -818,7 +818,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "docs.open",
-        title: "Open docs",
+        title: zh("Open docs"),
         run: () => {
           open("https://opencode.ai/docs").catch(() => {})
           dialog.clear()
@@ -827,7 +827,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "app.exit",
-        title: "Exit the app",
+        title: zh("Exit the app"),
         slashName: "exit",
         slashAliases: ["quit", "q"],
         run: () => exit(),
@@ -835,7 +835,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "app.debug",
-        title: "Toggle debug panel",
+        title: zh("Toggle debug panel"),
         category: "System",
         run: () => {
           renderer.toggleDebugOverlay()
@@ -844,7 +844,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "app.console",
-        title: "Toggle console",
+        title: zh("Toggle console"),
         category: "System",
         run: () => {
           renderer.console.toggle()
@@ -867,7 +867,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "terminal.suspend",
-        title: "Suspend terminal",
+        title: zh("Suspend terminal"),
         category: "System",
         hidden: true,
         enabled: process.platform !== "win32",
@@ -879,7 +879,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "terminal.title.toggle",
-        title: terminalTitleEnabled() ? "Disable terminal title" : "Enable terminal title",
+        title: terminalTitleEnabled() ? zh("Disable terminal title") : zh("Enable terminal title"),
         category: "System",
         run: () => {
           setTerminalTitleEnabled((prev) => {
@@ -893,7 +893,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
       },
       {
         name: "app.toggle.animations",
-        title: kv.get("animations_enabled", true) ? "Disable animations" : "Enable animations",
+        title: kv.get("animations_enabled", true) ? zh("Disable animations") : zh("Enable animations"),
         category: "System",
         run: () => {
           kv.set("animations_enabled", !kv.get("animations_enabled", true))
