@@ -14,7 +14,7 @@
 ### 一键安装（推荐）
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/amy12/opencode/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/taobaoww2010-alt/daolu/main/install.sh | bash
 ```
 
 ### 手动安装
@@ -23,7 +23,7 @@ curl -fsSL https://raw.githubusercontent.com/amy12/opencode/main/install.sh | ba
 
 ```bash
 # 下载最新版本
-curl -L https://github.com/amy12/opencode/releases/latest/download/daolu-darwin-arm64 -o ~/.local/bin/daolu
+curl -L https://github.com/taobaoww2010-alt/daolu/releases/latest/download/daolu-darwin-arm64 -o ~/.local/bin/daolu
 chmod +x ~/.local/bin/daolu
 
 # 添加到 PATH（如果还没有）
@@ -35,7 +35,7 @@ source ~/.zshrc
 
 ```bash
 # 下载最新版本
-curl -L https://github.com/amy12/opencode/releases/latest/download/daolu-linux-x64 -o ~/.local/bin/daolu
+curl -L https://github.com/taobaoww2010-alt/daolu/releases/latest/download/daolu-linux-x64 -o ~/.local/bin/daolu
 chmod +x ~/.local/bin/daolu
 
 # 添加到 PATH
@@ -47,7 +47,7 @@ source ~/.bashrc
 
 ```bash
 # 克隆仓库
-git clone https://github.com/amy12/opencode.git
+git clone https://github.com/taobaoww2010-alt/daolu.git
 cd opencode
 
 # 安装依赖
@@ -82,7 +82,7 @@ daolu
 重新运行安装脚本即可更新到最新版本：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/amy12/opencode/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/taobaoww2010-alt/daolu/main/install.sh | bash
 ```
 
 ### 手动更新
@@ -92,7 +92,7 @@ curl -fsSL https://raw.githubusercontent.com/amy12/opencode/main/install.sh | ba
 rm ~/.local/bin/daolu
 
 # 重新安装
-curl -L https://github.com/amy12/opencode/releases/latest/download/daolu-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m) -o ~/.local/bin/daolu
+curl -L https://github.com/taobaoww2010-alt/daolu/releases/latest/download/daolu-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m) -o ~/.local/bin/daolu
 chmod +x ~/.local/bin/daolu
 ```
 

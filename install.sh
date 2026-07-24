@@ -3,7 +3,7 @@
 # Installs daolu (Chinese-localized opencode) from GitHub releases
 set -e
 
-REPO="amy12/daolu"
+REPO="taobaoww2010-alt/daolu"
 DAOLU_DIR="$HOME/.local/bin"
 DAOLU_BIN="$DAOLU_DIR/daolu"
 
@@ -76,9 +76,9 @@ if [ "$(uname -s)" = "Linux" ]; then
     # Clone and build
     BUILD_DIR=$(mktemp -d)
     echo "Cloning daolu repository..."
-    git clone --depth 1 https://github.com/amy12/opencode.git "$BUILD_DIR/daolu" 2>/dev/null || {
+    git clone --depth 1 https://github.com/taobaoww2010-alt/daolu.git "$BUILD_DIR/daolu" 2>/dev/null || {
         echo -e "${RED}Error: Failed to clone repository${NC}"
-        echo "Please check: https://github.com/amy12/opencode"
+        echo "Please check: https://github.com/taobaoww2010-alt/daolu"
         exit 1
     }
     
@@ -109,7 +109,7 @@ else
         
         # Fallback to build from source
         BUILD_DIR=$(mktemp -d)
-        git clone --depth 1 https://github.com/amy12/opencode.git "$BUILD_DIR/daolu"
+        git clone --depth 1 https://github.com/taobaoww2010-alt/daolu.git "$BUILD_DIR/daolu"
         cd "$BUILD_DIR/daolu"
         bash script/build.sh
         
