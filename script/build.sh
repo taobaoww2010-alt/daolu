@@ -17,7 +17,10 @@ echo "========================================="
 # Step 1: Clone opencode if not exists
 if [ ! -d "$BUILD_DIR/opencode" ]; then
     echo "[1/4] Cloning opencode v$OPENCODE_VERSION..."
-    git clone --depth 1 --branch "v$OPENCODE_VERSION" https://github.com/anomalyco/opencode.git "$BUILD_DIR/opencode"
+    git clone --depth 1 --branch "v$OPENCODE_VERSION" https://github.com/anomalyco/opencode.git "$BUILD_DIR/opencode" 2>/dev/null || {
+        echo "Warning: Failed to clone specific version, trying latest..."
+        git clone --depth 1 https://github.com/anomalyco/opencode.git "$BUILD_DIR/opencode"
+    }
 else
     echo "[1/4] opencode already cloned"
 fi

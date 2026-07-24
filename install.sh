@@ -3,7 +3,7 @@
 # Installs daolu (Chinese-localized opencode) from GitHub releases
 set -e
 
-REPO="amy12/opencode"  # TODO: Update with actual GitHub repo
+REPO="amy12/daolu"
 DAOLU_DIR="$HOME/.local/bin"
 DAOLU_BIN="$DAOLU_DIR/daolu"
 
