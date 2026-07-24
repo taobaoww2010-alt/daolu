@@ -241,7 +241,6 @@ const TIPS: Tip[] = [
   `Use {highlight}--format json{/highlight} ${zh("for machine-readable output in scripts")}`,
   `Run {highlight}opencode serve{/highlight} ${zh("for headless API access to OpenCode")}`,
   `Use {highlight}opencode run --attach{/highlight} ${zh("to connect to a running server")}`,
-  `Run {highlight}opencode upgrade{/highlight} ${zh("to update to the latest version")}`,
   `Run {highlight}opencode auth list{/highlight} ${zh("to see all configured providers")}`,
   `Run {highlight}opencode agent create{/highlight} ${zh("for guided agent creation")}`,
   `Use {highlight}/opencode{/highlight} ${zh("in GitHub issues/PRs to trigger AI actions")}`,
