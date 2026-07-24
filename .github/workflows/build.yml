@@ -40,16 +40,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: |
-          cd build/opencode
-          bun install
-
       - name: Apply patches
         run: |
           # Clone opencode
           git clone --depth 1 --branch "v${{ github.event.inputs.opencode_version || '1.18.2' }}" \
-            https://github.com/anomalyco/opencode.git build/opencode
+            https://github.com/anomalyco/opencode.git build/opencode || \
+          git clone --depth 1 https://github.com/anomalyco/opencode.git build/opencode
           
           # Apply patches
           find patches -type f | while read -r patch_file; do
