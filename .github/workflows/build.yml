@@ -67,6 +67,16 @@ jobs:
           bun install
           bun run packages/opencode/script/build.ts --single --baseline
 
+      - name: Use baseline binary for Linux
+        if: runner.os == 'Linux'
+        working-directory: build/opencode
+        run: |
+          # Use baseline binary for better CPU compatibility
+          if [ -d "packages/opencode/dist/opencode-linux-x64-baseline" ]; then
+            rm -rf packages/opencode/dist/opencode-linux-x64
+            mv packages/opencode/dist/opencode-linux-x64-baseline packages/opencode/dist/opencode-linux-x64
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
