@@ -41,7 +41,9 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: bun install
+        run: |
+          cd build/opencode
+          bun install
 
       - name: Apply patches
         run: |
@@ -62,7 +64,9 @@ jobs:
         env:
           OPENCODE_VERSION: ${{ github.event.inputs.opencode_version || '1.18.2' }}
           OPENCODE_CHANNEL: latest
-        run: bun run packages/opencode/script/build.ts --single
+        run: |
+          bun install
+          bun run packages/opencode/script/build.ts --single
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
