@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-SOURCE_DIR="/Users/amyyu12/Downloads/opencode-dev"
+SOURCE_DIR="${OPENCODE_SOURCE_DIR:-/Users/amyyu12/Downloads/opencode-dev}"
 PATCHES_DIR="$ROOT_DIR/patches"
 
 echo "Updating patches from $SOURCE_DIR..."
@@ -38,7 +38,6 @@ for file in \
     component/dialog-workspace-unavailable.tsx \
     component/dialog-workspace-file-changes.tsx \
     component/dialog-model.tsx \
-    component/dialog-provider.tsx \
     component/dialog-mcp.tsx \
     component/dialog-skill.tsx \
     component/dialog-agent.tsx \
@@ -65,7 +64,6 @@ for file in \
     feature-plugins/home/tips.tsx \
     feature-plugins/home/footer.tsx \
     feature-plugins/sidebar/footer.tsx \
-    feature-plugins/system/notifications.ts \
     feature-plugins/system/diff-viewer.tsx \
     feature-plugins/system/diff-viewer-file-tree.tsx \
     feature-plugins/system/plugins.tsx \

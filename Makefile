@@ -26,8 +26,8 @@ clean: ## Clean build directory
 
 install: ## Install daolu to ~/.local/bin
 	@mkdir -p ~/.local/bin
-	@if [ -f dist/*/bin/opencode ]; then \
-		cp dist/*/bin/opencode ~/.local/bin/daolu; \
+	@if ls dist/opencode-*/bin/opencode 2>/dev/null 1>&2; then \
+		cp dist/opencode-*/bin/opencode ~/.local/bin/daolu; \
 		chmod +x ~/.local/bin/daolu; \
 		echo "Installed daolu to ~/.local/bin/daolu"; \
 	else \
@@ -40,7 +40,7 @@ uninstall: ## Remove daolu from ~/.local/bin
 	@echo "Removed ~/.local/bin/daolu"
 
 update-patches: ## Update patches from current opencode-dev source
-	@echo "Updating patches from /Users/amyyu12/Downloads/opencode-dev..."
+	@echo "Updating patches from $${OPENCODE_SOURCE_DIR:-/Users/amyyu12/Downloads/opencode-dev}..."
 	@bash script/update-patches.sh
 
 version: ## Show current version

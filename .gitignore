@@ -15,3 +15,22 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Environment
+.env
+.env.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+
+# Cache
+.cache/
+.bun-cache/
+tmp/
+temp/
+
+# Packages
+*.tgz

@@ -96,8 +96,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            daolu-darwin-arm64/bin/opencode
-            daolu-darwin-x64/bin/opencode
-            daolu-linux-x64/bin/opencode
-            daolu-linux-arm64/bin/opencode
+            daolu-darwin-arm64/opencode-darwin-arm64/bin/opencode
+            daolu-darwin-x64/opencode-darwin-x64/bin/opencode
+            daolu-linux-x64/opencode-linux-x64/bin/opencode
+            daolu-linux-arm64/opencode-linux-arm64/bin/opencode
           generate_release_notes: true
