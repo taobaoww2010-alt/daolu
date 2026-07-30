@@ -53,7 +53,7 @@ echo "Downloading daolu..."
 
 # Get download URL from latest release
 LATEST_URL=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" \
-    | grep -o "\"browser_download_url\": *\"[^\"]*${PLATFORM}[^\"]*\"" \
+    | grep -o "\"browser_download_url\": *\"[^\"]*daolu-${PLATFORM}[^\"]*\"" \
     | head -1 \
     | cut -d'"' -f4)
 

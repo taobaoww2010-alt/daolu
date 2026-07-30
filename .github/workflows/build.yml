@@ -92,12 +92,16 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
 
+      - name: Prepare release assets
+        run: |
+          mkdir -p release-assets
+          cp daolu-darwin-arm64/opencode-darwin-arm64/bin/opencode release-assets/daolu-darwin-arm64
+          cp daolu-darwin-x64/opencode-darwin-x64/bin/opencode release-assets/daolu-darwin-x64
+          cp daolu-linux-x64/opencode-linux-x64/bin/opencode release-assets/daolu-linux-x64
+          cp daolu-linux-arm64/opencode-linux-arm64/bin/opencode release-assets/daolu-linux-arm64
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            daolu-darwin-arm64/opencode-darwin-arm64/bin/opencode
-            daolu-darwin-x64/opencode-darwin-x64/bin/opencode
-            daolu-linux-x64/opencode-linux-x64/bin/opencode
-            daolu-linux-arm64/opencode-linux-arm64/bin/opencode
+          files: release-assets/*
           generate_release_notes: true
