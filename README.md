@@ -13,8 +13,16 @@
 
 ### 一键安装（推荐）
 
+#### macOS / Linux
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/taobaoww2010-alt/daolu/main/install.sh | bash
+```
+
+#### Windows (PowerShell)
+
+```powershell
+iex "& { $(irm https://raw.githubusercontent.com/taobaoww2010-alt/daolu/main/install.ps1) }"
 ```
 
 ### 手动安装
@@ -41,6 +49,21 @@ chmod +x ~/.local/bin/daolu
 # 添加到 PATH
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+```
+
+#### Windows
+
+```powershell
+# 下载最新版本
+$url = "https://github.com/taobaoww2010-alt/daolu/releases/latest/download/daolu-windows-x64.exe"
+$dir = "$env:USERPROFILE\.local\bin"
+New-Item -ItemType Directory -Force -Path $dir | Out-Null
+Invoke-WebRequest -Uri $url -OutFile "$dir\daolu.exe"
+
+# 添加到 PATH
+[Environment]::SetEnvironmentVariable('Path',
+  [Environment]::GetEnvironmentVariable('Path', 'User') + ";$dir",
+  'User')
 ```
 
 ### 从源码构建
@@ -109,7 +132,8 @@ daolu/
 ├── .github/
 │   └── workflows/
 │       └── build.yml     # GitHub Actions 工作流
-├── install.sh            # 安装脚本
+├── install.sh            # 安装脚本 (macOS/Linux)
+├── install.ps1           # 安装脚本 (Windows)
 ├── Makefile              # 构建命令
 └── README.md             # 本文档
 ```

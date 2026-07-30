@@ -19,12 +19,19 @@ jobs:
         include:
           - os: macos-latest
             platform: darwin-arm64
+            suffix: ""
           - os: macos-13
             platform: darwin-x64
+            suffix: ""
           - os: ubuntu-latest
             platform: linux-x64
+            suffix: ""
           - os: ubuntu-latest
             platform: linux-arm64
+            suffix: ""
+          - os: windows-latest
+            platform: windows-x64
+            suffix: ".exe"
 
     steps:
       - name: Checkout
@@ -41,15 +48,17 @@ jobs:
           bun-version: latest
 
       - name: Install setuptools
+        if: runner.os != 'Windows'
         run: python3 -m pip install setuptools || pip install setuptools || true
 
       - name: Apply patches
+        shell: bash
         run: |
           # Clone opencode
           git clone --depth 1 --branch "v${{ github.event.inputs.opencode_version || '1.18.2' }}" \
             https://github.com/anomalyco/opencode.git build/opencode || \
           git clone --depth 1 https://github.com/anomalyco/opencode.git build/opencode
-          
+
           # Apply patches
           find patches -type f | while read -r patch_file; do
             relative_path="${patch_file#patches/}"
@@ -63,6 +72,7 @@ jobs:
         env:
           OPENCODE_VERSION: ${{ github.event.inputs.opencode_version || '1.18.2' }}
           OPENCODE_CHANNEL: latest
+        shell: bash
         run: |
           bun install
           bun run packages/opencode/script/build.ts --single --baseline
@@ -87,7 +97,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
-    
+
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -99,6 +109,11 @@ jobs:
           cp daolu-darwin-x64/opencode-darwin-x64/bin/opencode release-assets/daolu-darwin-x64
           cp daolu-linux-x64/opencode-linux-x64/bin/opencode release-assets/daolu-linux-x64
           cp daolu-linux-arm64/opencode-linux-arm64/bin/opencode release-assets/daolu-linux-arm64
+          # Handle both opencode and opencode.exe (Windows)
+          win_bin=$(find daolu-windows-x64 -type f \( -name "opencode" -o -name "opencode.exe" \) 2>/dev/null | head -1)
+          if [ -n "$win_bin" ]; then
+            cp "$win_bin" release-assets/daolu-windows-x64.exe
+          fi
 
       - name: Create release
         uses: softprops/action-gh-release@v1

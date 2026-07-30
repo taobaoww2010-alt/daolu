@@ -1,7 +1,7 @@
 # Daolu Makefile
 # Build and manage daolu (Chinese-localized opencode)
 
-.PHONY: build clean install help
+.PHONY: build build-all clean install help
 
 OPENCODE_VERSION ?= 1.18.2
 
@@ -20,6 +20,9 @@ help: ## Show this help
 
 build: ## Build daolu for current platform
 	@bash script/build.sh
+
+build-all: ## Build daolu for all platforms (cross-compile)
+	@bash script/build.sh --all
 
 clean: ## Clean build directory
 	@rm -rf build dist

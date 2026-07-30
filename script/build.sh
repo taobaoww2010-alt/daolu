@@ -1,6 +1,8 @@
 #!/bin/bash
 # Daolu Build Script
 # Builds daolu (Chinese-localized opencode) from source
+# Usage: ./script/build.sh [--all]
+#   --all  Build for all platforms (cross-compile)
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -8,6 +10,12 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 OPENCODE_VERSION="${OPENCODE_VERSION:-1.18.2}"
 BUILD_DIR="$ROOT_DIR/build"
 OUTPUT_DIR="$ROOT_DIR/dist"
+BUILD_ALL="${BUILD_ALL:-false}"
+for arg in "$@"; do
+  case "$arg" in
+    --all) BUILD_ALL=true ;;
+  esac
+done
 
 echo "========================================="
 echo "  Daolu Build Script"
@@ -47,7 +55,12 @@ bun install
 echo "[4/5] Building..."
 export OPENCODE_VERSION="$OPENCODE_VERSION"
 export OPENCODE_CHANNEL="latest"
-bun run packages/opencode/script/build.ts --single
+if [ "$BUILD_ALL" = "true" ]; then
+  echo "  Building for all platforms..."
+  bun run packages/opencode/script/build.ts --baseline
+else
+  bun run packages/opencode/script/build.ts --single
+fi
 
 # Step 5: Copy output
 echo "[5/5] Copying build output..."
